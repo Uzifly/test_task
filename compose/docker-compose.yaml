@@ -1,0 +1,14 @@
+version: '3.3'
+
+services: 
+  clickhouse:
+    container_name: chickhouse-server
+    image: clickhouse/clickhouse-server
+    restart: unless-stopped
+    ports:
+      - "8523:8123"
+      - "8500:9000"
+      - "8509:9009"
+    volumes:
+      - ./users.xml:/etc/clickhouse-server/users.d/users.xml
+      - ./de_clickhouse.sql:/docker-entrypoint-initdb.d/de_clickhouse.sql
