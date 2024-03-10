@@ -1,0 +1,7 @@
+version: 1
+
+sources:
+- name: test_db
+  tables:
+  - name: payments
+  - name: manager_departments

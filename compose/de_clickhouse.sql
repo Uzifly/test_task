@@ -1,6 +1,7 @@
-CREATE DATABASE test_db;
+CREATE DATABASE IF NOT EXISTS test_db;
 
-CREATE TABLE test_db.manager_departments
+
+CREATE TABLE IF NOT EXISTS test_db.manager_departments
 (
     email String,
     department Nullable(String)
@@ -8,32 +9,8 @@ CREATE TABLE test_db.manager_departments
 ENGINE = MergeTree ORDER BY email
 SETTINGS index_granularity = 8192;
 
-INSERT INTO test_db.manager_departments (email, department)
-VALUES  ('n.manager10@profitbase.ru', 'ТОП-менеджмент'),
-        ('n.manager13@profitbase.ru', NULL),
-        ('n.manager11@profitbase.ru', 'Клиентский сервис'),
-        ('n.manager12@profitbase.ru', 'Отдел продаж'),
-        ('n.manager14@profitbase.ru', 'Отдел продаж'),
-        ('n.manager15@profitbase.ru', 'Клиентский сервис'),
-        ('n.manager16@profitbase.ru', 'Отдел продаж'),
-        ('n.manager17@profitbase.ru', 'Отдел продаж'),
-        ('n.manager18@profitbase.ru', 'Отдел продаж'),
-        ('n.manager19@profitbase.ru', 'Партнёрка'),
-        ('n.manager1@profitbase.ru', 'Клиентский сервис'),
-        ('n.manager20@profitbase.ru', 'Отдел продаж'),
-        ('n.manager21@profitbase.ru', 'Проектный офис'),
-        ('n.manager22@profitbase.ru', 'Проектный офис'),
-        ('n.manager23@profitbase.ru', 'Клиентский  сервис'),
-        ('n.manager2@profitbase.ru', 'Отдел продаж'),
-        ('n.manager3@profitbase.ru', NULL),
-        ('n.manager4@profitbase.ru', NULL),
-        ('n.manager5@profitbase.ru', 'ТОП-менеджмент'),
-        ('n.manager6@profitbase.ru', 'Проектный офис'),
-        ('n.manager7@profitbase.ru', 'Партнёрка'),
-        ('n.manager8@profitbase.ru', 'Клиентский сервис'),
-        ('n.manager9@profitbase.ru', 'Партнёрка');
 
-CREATE TABLE test_db.payments
+CREATE TABLE IF NOT EXISTS test_db.payments
 (
     id           UInt64,
     value        Float64,
@@ -45,6 +22,7 @@ CREATE TABLE test_db.payments
 )
 ENGINE = MergeTree ORDER BY id
 SETTINGS index_granularity = 8192;
+
 
 INSERT INTO test_db.payments (id, value, client_id, client_name, payment_date, manager_name, manager_email)
 VALUES  (1, 531320, 50, 'Клиент #50', '2023-01-09', 'Manager #23', 'nmanager23@profitbase.ru'),
@@ -699,3 +677,29 @@ VALUES  (1, 531320, 50, 'Клиент #50', '2023-01-09', 'Manager #23', 'nmanag
         (650, 517280, 55, 'Клиент #55', '2023-10-03', 'Manager #2', 'nmanager2@profitbase.ru'),
         (651, 538106, 115, 'Клиент #115', '2023-10-03', 'Manager #11', 'nmanager11@profitbase.ru'),
         (652, 508265, 108, 'Клиент #108', '2023-10-03', 'Manager #23', 'nmanager23@profitbase.ru');
+
+
+INSERT INTO test_db.manager_departments (email, department)
+VALUES  ('n.manager10@profitbase.ru', 'ТОП-менеджмент'),
+        ('n.manager13@profitbase.ru', NULL),
+        ('n.manager11@profitbase.ru', 'Клиентский сервис'),
+        ('n.manager12@profitbase.ru', 'Отдел продаж'),
+        ('n.manager14@profitbase.ru', 'Отдел продаж'),
+        ('n.manager15@profitbase.ru', 'Клиентский сервис'),
+        ('n.manager16@profitbase.ru', 'Отдел продаж'),
+        ('n.manager17@profitbase.ru', 'Отдел продаж'),
+        ('n.manager18@profitbase.ru', 'Отдел продаж'),
+        ('n.manager19@profitbase.ru', 'Партнёрка'),
+        ('n.manager1@profitbase.ru', 'Клиентский сервис'),
+        ('n.manager20@profitbase.ru', 'Отдел продаж'),
+        ('n.manager21@profitbase.ru', 'Проектный офис'),
+        ('n.manager22@profitbase.ru', 'Проектный офис'),
+        ('n.manager23@profitbase.ru', 'Клиентский  сервис'),
+        ('n.manager2@profitbase.ru', 'Отдел продаж'),
+        ('n.manager3@profitbase.ru', NULL),
+        ('n.manager4@profitbase.ru', NULL),
+        ('n.manager5@profitbase.ru', 'ТОП-менеджмент'),
+        ('n.manager6@profitbase.ru', 'Проектный офис'),
+        ('n.manager7@profitbase.ru', 'Партнёрка'),
+        ('n.manager8@profitbase.ru', 'Клиентский сервис'),
+        ('n.manager9@profitbase.ru', 'Партнёрка');
